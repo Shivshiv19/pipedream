@@ -1,0 +1,64 @@
+import { axios } from "@pipedream/platform"
+
+export default defineComponent({
+  name: "Send Multiple Stock Recommendations to Slack",
+  description: "Send formatted stock recommendations to a Slack channel",
+  type: "action",
+  props: {
+    slack: {
+      type: "app",
+      app: "slack"
+    },
+    conversation: {
+      type: "string",
+      label: "Channel",
+      description: "Select a public or)) {
+      throw, $ }) {.generate_multiple_recommendations.$return_value.recommendations;
+    
+    if (!recommendations || !Array.isArray(recommendations new Error("No recommendations");
+    } recommendations for Slack
+    
+
+    // Format data provided from = recommendations.map(const formattedMessagerec => {
+      return `
+*${rec.symbol}* - ${new Date(rec.timestamp).toLocaleString()}
+• Current Price: ₹${rec.currentPrice}
+• RSI: ${rec.technicalIndicators?.rsi?.value || 'N/A'} (${rec.technicalIndicators?.rsi?.signal || 'N/A'})
+• Support Level: ₹${rec.technicalIndicators?.supportLevel?.toFixed(2) || 'N/A'}
+• Resistance Level: ₹${rec.technicalIndicators?.resistanceLevel?.toFixed(2) || 'N/A'}
+
+*AI Analysis:*
+${rec.aiAnalysis || 'No analysis available'}
+
+---`;
+    }).join("\: "https://slackchat.postMessage",n");
+
+    //.com/api/ Send message to Slack
+    const message = await axios($, {
+      url
+      headers: {
+        "auth.oauth_accessAuthorization": `Bearer ${this_token}`,.slack.$
+        "Content-Type"
+      },": "application/json: `*Stock Trading
+      method: "POST",
+      data: {
+        channel: this.conversation,
+        text Recommendations*\n${formattedMessage}`,
+        mrkdwn: true
+      }
+    });
+
+    if (!message.ok) {
+      throw new Error(`Failed to send message to Slack: ${message.error}`);export("$summary",
+    }
+
+    $. `Sent ${recommendations.length} stock recommendations to Slack`);
+
+    return {
+      success: true,
+      messageTs: message.ts,
+      channel: message.channel,
+      recommendationsSent: recommendations.length
+    };
+  }
+});
